@@ -1,0 +1,67 @@
+/*
+ * Replace the function macros in cylinder?.c with the following function definitions
+ * to see other kinds of surfaces. Actually, function definitions are probably better
+ * than macros, as macros look clumsy with complicated functions.
+ */
+
+// The following functions extrude a base circle as in cylinder2.c, but with the
+// the radius varying along the z-axis. This is seen in the formulae for FNX and FNY.
+// The radius as a function of z is 1 + 5*(z-0.5)^2. Thus the radius varies as a parabola
+// and the (z-0.5) is used to center the parabola at 0.5 (as j/N varies from 0 to 1!).
+// You can see the parabolic section of the figure created.
+GLfloat FNX(int i, int j)
+{
+  return ( 1 + 5 * ( (float)j/N - 0.5 )*( (float)j/N - 0.5 ) ) 
+                 * cos( ( (float)i/M ) * 2 * PI);
+}
+
+GLfloat FNY(int i, int j)
+{
+  return ( 1 + 5 * ( (float)j/N - 0.5 )*( (float)j/N - 0.5 ) ) 
+                 * sin( ( (float)i/M ) * 2 * PI);
+}
+
+GLfloat FNZ(int i, int j)
+{
+  return 3.0 * (float) j/N;
+}
+
+// The following functions extrude a parabola in the z-direction to 
+// give a parabolic cylinder (compare parabolic-cylinder.c). The parabola
+// equation is y = 1 + 5*(x-0.5)^2.
+GLfloat FNX(int i, int j)
+{
+   return (float)i/M;
+}
+
+GLfloat FNY(int i, int j)
+{
+   return 1 + 5 * ( (float)i/M - 0.5 )*( (float)i/M - 0.5 );
+}
+
+GLfloat FNZ(int i, int j)
+{
+  return 3.0 * (float) j/N;
+}
+
+// The following functions draw a torus. The i-direction describes the latitudes
+// (small circles that are sections of the torus) while the j-direction describes
+// the longitudes (the larger circles that travel around the torus). Imagine a 
+// torus being described by a small circle travelling (as though a ring) around
+// a larger circle. Verify with trigonometry that we  map the mesh points correctly
+// on to the torus.
+GLfloat FNX(int i, int j)
+{
+   return (1 + 0.5 * cos( (float) i/M  * 2 * PI ) ) * cos( (float) j/N  * 2 * PI );
+}
+
+GLfloat FNY(int i, int j)
+{
+   return (1 + 0.5 * cos( (float) i/M  * 2 * PI ) ) * sin( (float) j/N  * 2 * PI );
+}
+
+GLfloat FNZ(int i, int j)
+{
+   return 0.5 * sin( (float) i/M  * 2 * PI );
+}
+

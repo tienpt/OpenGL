@@ -1,0 +1,1 @@
+opengl32.lib glut32.lib glu32.lib glaux.lib 

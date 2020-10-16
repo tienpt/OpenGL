@@ -1,0 +1,41 @@
+/* 
+ * In hello.c replace the body of the display routine, that is
+ *       "void display(void)
+ *        ... 
+ *       glFlush ();
+ *       }"
+ * with the following
+ */ 
+#include <math.h>
+
+#define PI 3.14159265
+
+void display(void)
+{   
+   GLint circle_pnts = 100;
+   GLdouble radius = 0.4;
+   GLdouble center_x = 0.5;
+   GLdouble center_y = 0.5;
+
+   GLdouble angle;
+   int i;
+
+/* clear all pixels  */
+   glClear (GL_COLOR_BUFFER_BIT);
+
+/* draw circle with center at (center_x,center_y) and radius r */
+
+   glColor3f (1.0, 1.0, 1.0);
+   glBegin(GL_LINE_LOOP);
+   for(i = 0; i < circle_pnts; ++i){
+    angle = 2 * PI * i / circle_pnts;
+    glColor3ub(rand()%256, rand()%256, rand()%256); 
+    glVertex2f(center_x + cos(angle) * radius, center_y + sin(angle) * radius);
+   }
+   glEnd();
+
+/* don't wait!  
+ * start processing buffered OpenGL routines 
+ */
+   glFlush ();
+}

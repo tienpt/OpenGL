@@ -1,0 +1,95 @@
+// Step 1
+// Just a rectangle lying on the xz (i.e., y=0) plane.
+GLfloat ctrlpoints[4][4][3] = {
+	{{-2.0, 0.0, 3.0},
+	 {-1.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {1.0, 0.0, 3.0}},
+	{{-2.0, 0.0, 1.0},
+	 {-1.0, 0.0, 1.0},
+	 {0.0, 0.0, 1.0},
+	 {1.0, 0.0, 1.0}},
+	{{-2.0, 0.0, -1.0},
+	 {-1.0, 0.0, -1.0},
+	 {0.0, 0.0, -1.0},
+	 {1.0, 0.0, -1.0}},
+	{{-2.0, 0.0, -3.0},
+	 {-1.0, 0.0, -3.0},
+	 {0.0, 0.0, -3.0},
+	 {1.0, 0.0, -3.0}},
+};
+
+// Step 2
+// Only change is the x-coordinates of the *first* 4 vertices -
+// we "stitch" the two halves of one side together. In other
+// words, we fold one side in half.
+GLfloat ctrlpoints[4][4][3] = {
+	{{1.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {1.0, 0.0, 3.0}},
+	{{-2.0, 0.0, 1.0},
+	 {-1.0, 0.0, 1.0},
+	 {0.0, 0.0, 1.0},
+	 {1.0, 0.0, 1.0}},
+	{{-2.0, 0.0, -1.0},
+	 {-1.0, 0.0, -1.0},
+	 {0.0, 0.0, -1.0},
+	 {1.0, 0.0, -1.0}},
+	{{-2.0, 0.0, -3.0},
+	 {-1.0, 0.0, -3.0},
+	 {0.0, 0.0, -3.0},
+	 {1.0, 0.0, -3.0}},
+};
+
+// Step 3
+// Do the same for the opposite side: only change is the 
+// x-coordinates of the *last* 4 vertices.
+//
+// It looks a little like a boat already but this one will never float -
+// because it is totally flat!! All the vertices are on the xz-plane
+// (all the y-coordinates are 0), so the object lies entirely on
+// the xz-plane. The thickness is an illusion of the curved lines.
+GLfloat ctrlpoints[4][4][3] = {
+	{{1.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {1.0, 0.0, 3.0}},
+	{{-2.0, 0.0, 1.0},
+	 {-1.0, 0.0, 1.0},
+	 {0.0, 0.0, 1.0},
+	 {1.0, 0.0, 1.0}},
+	{{-2.0, 0.0, -1.0},
+	 {-1.0, 0.0, -1.0},
+	 {0.0, 0.0, -1.0},
+	 {1.0, 0.0, -1.0}},
+	{{1.0, 0.0, -3.0},
+	 {0.0, 0.0, -3.0},
+	 {0.0, 0.0, -3.0},
+	 {1.0, 0.0, -3.0}},
+};
+
+// Step 4
+// Now we "plump" it up in the middle by varying the
+// y-coordinates - the changes are the y-coordinates of
+// the *middle* two vertices.
+//
+// Now it is indeed a 3-dimensional object!
+GLfloat ctrlpoints[4][4][3] = {
+	{{1.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {0.0, 0.0, 3.0},
+	 {1.0, 0.0, 3.0}},
+	{{1.0, -2.0, 1.0},
+	 {0.0, -1.0, 1.0},
+	 {0.0, 1.0, 1.0},
+	 {1.0, 2.0, 1.0}},
+	{{1.0, -2.0, -1.0},
+	 {0.0, -1.0, -1.0},
+	 {0.0, 1.0, -1.0},
+	 {1.0, 2.0, -1.0}},
+	{{1.0, 0.0, -3.0},
+	 {0.0, 0.0, -3.0},
+	 {0.0, 0.0, -3.0},
+	 {1.0, 0.0, -3.0}},
+};
